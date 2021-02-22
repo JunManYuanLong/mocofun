@@ -1,15 +1,15 @@
 package com.mocofun.moco
 
 import com.funtester.base.bean.Result
-import com.funtester.moco.support.CycleHandler
-import com.funtester.moco.support.DelayHandler
-import com.funtester.moco.support.LimitHandler
-import com.funtester.moco.support.QPSHandler
-import com.funtester.moco.support.RandomHandler
 import com.github.dreamhead.moco.ResponseHandler
 import com.github.dreamhead.moco.procedure.LatencyProcedure
 import com.google.common.collect.FluentIterable
 import com.alibaba.fastjson.JSONObject
+import com.mocofun.moco.support.CycleHandler
+import com.mocofun.moco.support.DelayHandler
+import com.mocofun.moco.support.LimitHandler
+import com.mocofun.moco.support.QPSHandler
+import com.mocofun.moco.support.RandomHandler
 
 import java.util.concurrent.TimeUnit
 
