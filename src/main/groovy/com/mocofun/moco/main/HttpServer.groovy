@@ -4,19 +4,22 @@ import com.funtester.base.bean.Result
 import com.mocofun.moco.MocoResponse
 import com.mocofun.moco.MocoServer
 
+import static com.github.dreamhead.moco.Moco.and
 import static com.github.dreamhead.moco.Moco.from
 
 /**
  * moco API的应用
  */
 class HttpServer extends MocoServer {
+
     public static void main(String[] args) {
         def server = getServer(getLogMonitor("1.log"))
         server.get(urlOnly("/test")).response(obRes(Result.success(getJson("324324=32432"))))
         server.get(urlOnly("/ss")).response(limit(textRes("dsfsd"),textRes("432432"),1000))
 
-        server.get(urlOnly("/find")).response(random("43242=342","e343=fdsf","3242"))
-        server.get(urlOnly("/qq")).response(cycle(getJson("3234=32423"),getJson("ew=32")))
+        server.get(urlOnly("/find")).response(random("43242=342", "e343=fdsf", "3242"))
+        server.get(urlOnly("/qq")).response(cycle(getJson("3234=32423"), getJson("ew=32")))
+        server.post(and(urlOnly("/post"),eqForm("a","a"))).response(textRes("234"))
         server.response(MocoResponse.textRes("hello word"))
         def run = run(server)
 
