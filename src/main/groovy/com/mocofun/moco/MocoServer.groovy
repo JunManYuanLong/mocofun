@@ -18,39 +18,39 @@ class MocoServer extends MocoResponse {
 
     def array = []
 
-/**
- * 获取httpserver对象，端口号12345
- * @return
- */
+    /**
+     * 获取httpserver对象，端口号12345
+     * @return
+     */
     static HttpServer getServer() {
         com.github.dreamhead.moco.Moco.httpServer 12345, getLogMonitor()
     }
 
-/**
- * 获取httpserver对象
- * @param port
- * @return
- */
+    /**
+     * 获取httpserver对象
+     * @param port
+     * @return
+     */
     static HttpServer getServer(int port) {
         com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor()
     }
 
-/**
- * 获取httpserver对象
- * @param mocoMonitors
- * @return
- */
+    /**
+     * 获取httpserver对象
+     * @param mocoMonitors
+     * @return
+     */
     static HttpServer getServer(MocoMonitor mocoMonitors) {
         com.github.dreamhead.moco.Moco.httpServer 12345, mocoMonitors
     }
 
-/**
- * 获取httpserver对象
- * @param port 端口
- * @param logName 日志文件名
- * @param configs 配置
- * @return
- */
+    /**
+     * 获取httpserver对象
+     * @param port 端口
+     * @param logName 日志文件名
+     * @param configs 配置
+     * @return
+     */
     static HttpServer getServer(final int port, String logName, MocoMonitor configs) {
         com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor(logName), configs
     }
@@ -65,56 +65,56 @@ class MocoServer extends MocoResponse {
         com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor(logName)
     }
 
-/**
- * 获取日志监视器，在log_path下面
- * @param logName
- * @return
- */
+    /**
+     * 获取日志监视器，在log_path下面
+     * @param logName
+     * @return
+     */
     static def getLogMonitor(String logName) {
         com.github.dreamhead.moco.Moco.log LOG_Path + logName, DEFAULT_CHARSET
     }
 
-/**
- * 获取日志监视器，默认在控制台显示
- * @return
- */
+    /**
+     * 获取日志监视器，默认在控制台显示
+     * @return
+     */
     static def getLogMonitor() {
         com.github.dreamhead.moco.Moco.log()
     }
 
-/**
- * 获取计数监视器，计数器在做测试的时候用到，确认服务启动且接口调用正常
- * @return
- */
+    /**
+     * 获取计数监视器，计数器在做测试的时候用到，确认服务启动且接口调用正常
+     * @return
+     */
     static RequestHit getHitMonitor() {
         MocoRequestHit.requestHit()
     }
 
-/**
- * 启动所有服务
- * @param httpServer
- * @return
- */
+    /**
+     * 启动所有服务
+     * @param httpServer
+     * @return
+     */
     static MocoServer run(HttpServer... httpServer) {
         def server = new MocoServer()
-        httpServer.each { x -> server.array << Runner.runner(x) }
+        httpServer.each {x -> server.array << Runner.runner(x)}
         server.start()
     }
 
-/**
- * 启动服务
- * @return
- */
+    /**
+     * 启动服务
+     * @return
+     */
     def start() {
-        array.each { x -> x.start() }
+        array.each {x -> x.start()}
         this
     }
 
-/**
- * 结束服务
- * @return
- */
+    /**
+     * 结束服务
+     * @return
+     */
     def stop() {
-        array.each { x -> x.stop() }
+        array.each {x -> x.stop()}
     }
 }
