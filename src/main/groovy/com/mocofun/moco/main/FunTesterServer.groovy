@@ -19,17 +19,21 @@ class FunTesterServer extends MocoServer{
         server.get(urlStartsWith("/random")).response(random(getJson("random=0"), getJson("random=1"), getJson("random=2"), getJson("random=3")))
         server.post(and(urlOnly("/post"), eqForm("a", "a"))).response(textRes("恭喜完成POST请求表单传参,单独参数验证"))
         server.get(urlOnly("/redirect")).redirectTo("https://mp.weixin.qq.com/s/s_FvGZTC42GEjaWzroz1eA")
+
+
+
+
+
+
+
+
+
         server.response(textRes("迷路的羔羊,我来收留你了!"))
 
 
-
-
-
-
-
-
-
-        def run = run(server)
+        def ser = getServer(54321, "1.log")
+        ser.response("恭喜发现隐藏服务!")
+        def run = run(server,ser)
         waitForKey("fan")
         run.stop()
 
