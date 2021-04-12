@@ -36,6 +36,15 @@ class MocoServer extends MocoResponse {
     }
 
     /**
+     * 取消日志输出,提升性能
+     * @param port
+     * @return
+     */
+    static HttpServer getServerNoLog(int port) {
+        com.github.dreamhead.moco.Moco.httpServer port
+    }
+
+    /**
      * 获取httpserver对象
      * @param mocoMonitors
      * @return
