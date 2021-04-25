@@ -5,12 +5,11 @@ import com.mocofun.moco.MocoServer
 class TestDemo extends MocoServer{
 
     static void main(String[] args) {
-        def log = getServerNoLog(12345)
-
-        log.response("我是测试服务的,测试接口,23上出炯炯分散反;J房贷就发积分赛")
-        def run = run(log)
+        def server = getServerNoLog(12345)
+        server.get(urlStartsWith("/test/qps")).response(qps(textRes("恭喜到达QPS!"),50))
+        server.response("到底了,没啥响应了")
+        def run = run(server)
         waitForKey("fan")
-        run.stop()
 
 
     }
