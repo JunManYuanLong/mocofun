@@ -1,17 +1,22 @@
 package com.mocofun.moco.support
 
+import com.funtester.config.Constant
+import com.funtester.frame.Output
 import com.funtester.frame.SourceCode
+import com.funtester.utils.Time
 import com.github.dreamhead.moco.ResponseHandler
 import com.github.dreamhead.moco.handler.AbstractResponseHandler
 import com.github.dreamhead.moco.internal.SessionContext
 import com.github.dreamhead.moco.util.Idles
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings
+import io.netty.handler.codec.http.HttpConstants
 
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 import static com.google.common.base.Preconditions.checkArgument
+
 /**
  * 固定QPS的接口实现类
  */
@@ -41,6 +46,11 @@ class QPSHandler extends AbstractResponseHandler {
      */
     private AtomicInteger diff = new AtomicInteger(0)
 
+    /**
+     * 重建handle
+     * @param handler
+     * @param gap 毫秒单位,内部转成微秒
+     */
     private QPSHandler(ResponseHandler handler, int gap) {
         this.gap = gap * 1000
         this.handler = handler
@@ -49,7 +59,6 @@ class QPSHandler extends AbstractResponseHandler {
     public static ResponseHandler newSeq(final ResponseHandler handler, int gap) {
         com.google.common.base.Preconditions.checkArgument(handler != null, "responsehandler 不能为空!");
         def handler1 = new QPSHandler(handler, gap)
-        handler1.thread.start()
         return handler1;
     }
 
@@ -60,9 +69,12 @@ class QPSHandler extends AbstractResponseHandler {
      */
     @Override
     void writeToResponse(SessionContext context) {
-        if (start == 0) start = SourceCode.getNanoMark()
+        if (start == 0) {
+            this.thread.start()
+            start = SourceCode.getNanoMark()
+        }
         semaphore.acquire()
-        if (diff.getAndIncrement() <= 0) Idles.idle(gap, TimeUnit.MICROSECONDS)
+        if (diff.getAndDecrement() <= 0) Idles.idle(gap, TimeUnit.MICROSECONDS)
         times++
         semaphore.release()
         handler.writeToResponse(context)
@@ -76,11 +88,11 @@ class QPSHandler extends AbstractResponseHandler {
         @Override
         void run() {
             while (true) {
-                SourceCode.sleep(30_000)
+                SourceCode.sleep(3.0)
                 long present = SourceCode.getNanoMark()
-                def t0 = present - start
+                def t0 = (present - start) / 1000
                 def t1 = times * gap
-                if (t0 - t1 > gap) diff.getAndSet((t0 - t1) / gap)
+                if (t0 - t1 > gap) diff.getAndSet((int) ((t0 - t1) / gap))
             }
         }
     })

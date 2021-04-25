@@ -23,14 +23,14 @@ class FunTesterServer extends MocoServer{
 
 
 
-
+        server.get(urlStartsWith("/test/qps")).response(qps(textRes("恭喜到达QPS!"),50))
 
 
 
 
         server.response(textRes("迷路的羔羊,我来收留你了!"))
 
-        def nolog = getServerNoLog("12344")
+        def nolog = getServerNoLog(12344)
         nolog.response("这是一个没有日志的服务!")
         def ser = getServer(54321, "1.log")
         ser.response("恭喜发现隐藏服务!")

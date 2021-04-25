@@ -23,7 +23,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServer() {
-        com.github.dreamhead.moco.Moco.httpServer 12345, getLogMonitor()
+        httpServer 12345, getLogMonitor()
     }
 
     /**
@@ -32,7 +32,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServer(int port) {
-        com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor()
+        httpServer port, getLogMonitor()
     }
 
     /**
@@ -41,7 +41,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServerNoLog(int port) {
-        com.github.dreamhead.moco.Moco.httpServer port
+        httpServer port
     }
 
     /**
@@ -50,7 +50,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServer(MocoMonitor mocoMonitors) {
-        com.github.dreamhead.moco.Moco.httpServer 12345, mocoMonitors
+        httpServer 12345, mocoMonitors
     }
 
     /**
@@ -61,7 +61,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServer(final int port, String logName, MocoMonitor configs) {
-        com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor(logName), configs
+        httpServer port, getLogMonitor(logName), configs
     }
 
     /**
@@ -71,7 +71,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static HttpServer getServer(final int port, String logName) {
-        com.github.dreamhead.moco.Moco.httpServer port, getLogMonitor(logName)
+        httpServer port, getLogMonitor(logName)
     }
 
     /**
@@ -80,7 +80,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static def getLogMonitor(String logName) {
-        com.github.dreamhead.moco.Moco.log LOG_Path + logName, DEFAULT_CHARSET
+        log LOG_Path + logName, DEFAULT_CHARSET
     }
 
     /**
@@ -88,7 +88,7 @@ class MocoServer extends MocoResponse {
      * @return
      */
     static def getLogMonitor() {
-        com.github.dreamhead.moco.Moco.log()
+        log()
     }
 
     /**
