@@ -10,7 +10,6 @@ class TestDemo extends MocoServer{
         server.response("到底了,没啥响应了")
         def run = run(server)
         waitForKey("fan")
-
-
+        run.stop()
     }
 }
