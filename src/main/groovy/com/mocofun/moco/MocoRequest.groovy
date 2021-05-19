@@ -139,6 +139,17 @@ class MocoRequest extends SourceCode {
     }
 
     /**
+     * header值是否相等
+     * @param key
+     * @param value
+     * @return
+     */
+    static RequestMatcher eqHeader(String key, String value) {
+        logger.debug("匹配请求header中key：{}是否存在", key)
+        eq(header(key), value)
+    }
+
+    /**
      * cookie是否存在
      * @param key
      * @return
@@ -146,6 +157,17 @@ class MocoRequest extends SourceCode {
     static RequestMatcher existCookie(String key) {
         logger.debug("匹配请求cookie中key：{}是否存在", key)
         exist(cookie(key))
+    }
+
+    /**
+     * cookie值是否相等
+     * @param key
+     * @param value
+     * @return
+     */
+    static RequestMatcher eqCookie(String key, String value) {
+        logger.debug("匹配请求cookie中key：{}是否存在", key)
+        eq(cookie(key), value)
     }
 
     /**
