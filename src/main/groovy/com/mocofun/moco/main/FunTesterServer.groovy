@@ -12,8 +12,8 @@ import static com.github.dreamhead.moco.Moco.and
 class FunTesterServer extends MocoServer{
 
     static void main(String[] args) {
-        def server = getServer(getLogMonitor("2.log"))
-        server.get(urlOnly("fun/tester")).response(obRes(Result.success("恭喜你进入测试服务了!")))
+        def server = getServer(getLogMonitor("${getMark()}.log"))
+        server.get(urlOnly("/fun/tester")).response(obRes(Result.success("恭喜你进入测试服务了!")))
         server.get(and(urlContain("/funtester"),existArgs("fun"))).response(random("测试随机0","测试随机1","测试随机2","测试随机3"))
         server.get(urlStartsWith("/limit")).response(limit(textRes("dsfsd"), textRes("432432"), 1000))
         server.get(urlStartsWith("/random")).response(random(getJson("random=0"), getJson("random=1"), getJson("random=2"), getJson("random=3")))

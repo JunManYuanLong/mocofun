@@ -2,7 +2,7 @@ package com.mocofun.moco.main
 
 import com.mocofun.moco.MocoServer
 
-class TestDemo extends MocoServer{
+class Share extends MocoServer{
 
     static void main(String[] args) {
         def server = getServerNoLog(12345)
