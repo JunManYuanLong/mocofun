@@ -30,7 +30,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler textRes(String content) {
-        com.github.dreamhead.moco.Moco.with content
+        with content
     }
 
     /**
@@ -42,7 +42,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler jsonRes(JSONObject json) {
-        com.github.dreamhead.moco.Moco.with json.toString()
+        with json.toString()
     }
 
     /**
@@ -51,15 +51,15 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler obRes(Result result) {
-        com.github.dreamhead.moco.Moco.with result.toString()
+        with result.toString()
     }
 
     static ResponseHandler success(Object result) {
-        com.github.dreamhead.moco.Moco.with Result.success(result).toString()
+        with Result.success(result).toString()
     }
 
     static ResponseHandler fail(Object result) {
-        com.github.dreamhead.moco.Moco.with Result.fail(result).toString()
+        with Result.fail(result).toString()
     }
 
     /**
@@ -82,7 +82,7 @@ class MocoResponse extends MocoRequest {
 
 
     /**
-     * 随机response
+     * 循环返回response
      * @param handlers
      * @return
      */
@@ -97,7 +97,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler sequenceRes(String content, String... contents) {
-        com.github.dreamhead.moco.Moco.seq content, contents
+        seq content, contents
     }
 
     /**
@@ -107,7 +107,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler sequenceRes(JSONObject content, JSONObject... contents) {
-        com.github.dreamhead.moco.Moco.seq content.toString(), (String[]) contents.toList().stream().map {x -> x.toString()}.toArray()
+        seq content.toString(), (String[]) contents.toList().stream().map {x -> x.toString()}.toArray()
     }
 
     /**
@@ -117,7 +117,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler sequenceRes(ResponseHandler handler, ResponseHandler... handlers) {
-        com.github.dreamhead.moco.Moco.seq handler, handlers
+        seq handler, handlers
     }
 
     /**
@@ -127,7 +127,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler setCookie(String key, String value) {
-        com.github.dreamhead.moco.Moco.cookie key, value
+        cookie key, value
     }
 
     /**
@@ -137,7 +137,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler setHeader(String key, String value) {
-        com.github.dreamhead.moco.Moco.header key, value
+        header key, value
     }
 
     /**
@@ -155,7 +155,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler setStatus(int code) {
-        com.github.dreamhead.moco.Moco.status code
+        status code
     }
 
     /**
@@ -164,7 +164,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static ResponseHandler setProxy(String url) {
-        com.github.dreamhead.moco.Moco.proxy url
+        proxy url
     }
 
     /**
@@ -173,7 +173,7 @@ class MocoResponse extends MocoRequest {
      * @return
      */
     static LatencyProcedure delay(long duration) {
-        com.github.dreamhead.moco.Moco.latency duration, TimeUnit.MILLISECONDS
+        atency duration, TimeUnit.MILLISECONDS
     }
 
     /**

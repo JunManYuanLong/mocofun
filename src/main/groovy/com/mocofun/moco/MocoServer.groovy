@@ -116,7 +116,7 @@ class MocoServer extends MocoResponse {
      */
     def start() {
         array.each {x -> x.start()}
-        logger.info("mocofun服务启动成功!")
+        logger.error("mocofun服务启动成功!")
         this
     }
 
