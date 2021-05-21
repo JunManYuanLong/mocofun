@@ -1,6 +1,8 @@
 package com.mocofun.moco.main
 
 import com.funtester.base.bean.Result
+import com.github.dreamhead.moco.HttpServer
+import com.github.dreamhead.moco.MocoMount
 import com.mocofun.moco.MocoResponse
 import com.mocofun.moco.MocoServer
 
@@ -10,7 +12,7 @@ import static com.github.dreamhead.moco.Moco.from
 /**
  * moco API的应用
  */
-class HttpServer extends MocoServer {
+class HttpServerDemo extends MocoServer {
 
     static void main(String[] args) {
         def server = getServer(getLogMonitor("1.log"))
@@ -28,7 +30,11 @@ class HttpServer extends MocoServer {
         run.stop()
     }
 
-    static proxyNetdata(HttpServer server) {
+    static void proxyNetdata(HttpServer server) {
         server.proxy(from("/").to("http://10.10.6.3:19999"))
+    }
+
+    static void mountS(HttpServer server) {
+        server.mount("/blog/", MocoMount.to("/blog"))
     }
 }
