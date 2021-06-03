@@ -91,7 +91,7 @@ class MocoResponse extends MocoRequest {
     }
 
     /**
-     * 随机返回文本，会停留在最后一个文本内容
+     * 按照次序响应，会停留在最后一个文本内容
      * @param content
      * @param contents
      * @return
