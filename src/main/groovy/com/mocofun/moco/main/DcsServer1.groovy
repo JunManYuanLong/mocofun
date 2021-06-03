@@ -5,10 +5,8 @@ import com.funtester.base.bean.Result
 import com.funtester.httpclient.FunLibrary
 import com.funtester.httpclient.FunRequest
 import com.mocofun.moco.MocoServer
-import com.sun.deploy.ui.FancyButton
-import org.apache.http.client.methods.HttpGet
 
-class DcsServer extends MocoServer {
+class DcsServer1 extends MocoServer {
 
     public static void main(String[] args) {
         def server = getServer(12345)
