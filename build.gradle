@@ -43,7 +43,7 @@ dependencies {
     //为了处理报错信息添加依赖
     compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.30'
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
-    compile files('/Users/oker/Library/groovy-2.5.7/lib/funtester-1.0.jar')
+    compile files('/Users/oker/Library/groovy-3.0.8/lib/funtester-1.0.jar')
     compile group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.1'
     compile group: 'com.github.dreamhead', name: 'moco-core', version: '0.12.0'
 }
